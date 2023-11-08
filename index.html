@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>R Abarbanel</title>
+  <style>
+    :root {
+      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      font-weight: 400;
+
+      color-scheme: light dark;
+      color: rgba(255, 255, 255, 0.87);
+      background-color: #242424;
+
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    * {
+      box-sizing: border-box;
+      padding: 0px;
+      margin: 0px;
+    }
+
+
+    a {
+      font-weight: 500;
+      color: #646cff;
+      text-decoration: inherit;
+    }
+
+    a:hover {
+      color: #535bf2;
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      place-items: left;
+      min-width: 320px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 3.2em;
+      line-height: 1.1;
+    }
+
+    .card {
+      padding: 2em;
+    }
+
+    #app {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem;
+      text-align: left;
+    }
+
+    button {
+      border-radius: 8px;
+      border: 1px solid transparent;
+      padding: 0.6em 1.2em;
+      font-size: 1em;
+      font-weight: 500;
+      font-family: inherit;
+      background-color: #1a1a1a;
+      cursor: pointer;
+      transition: border-color 0.25s;
+    }
+
+    button:hover {
+      border-color: #646cff;
+    }
+
+    button:focus,
+    button:focus-visible {
+      outline: 4px auto -webkit-focus-ring-color;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      /* width: 80%; */
+    }
+
+    .card {
+      border: 2px solid black;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: calc(1vw + 0.3em);
+      /* width: 80%; */
+    }
+
+    summary {
+      width: 90%;
+      margin: 0 auto;
+      font-size: calc(1vw + 0.5em);
+    }
+
+    h2 {
+      margin-left: 80px;
+    }
+
+    person {
+      font-size: calc(1vw + .2em);
+    }
+
+    h1 {
+      text-align: center;
+
+    }
+
+    row {
+      display: flex;
+      justify-content: space-around;
+      font-size: calc(1vw + 0.5em);
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+
+    company {
+      font-weight: bold;
+      font-size: 1.5em;
+      flex: 3;
+    }
+
+    .descr {
+      margin-left: 2em;
+    }
+
+    .spreadRow {
+      display: flex;
+      width: 90%;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .imgContainer {
+      flex: 1;
+    }
+
+    .smImg {
+      /* margin-top: 10px; */
+      height: 30px;
+      margin-right: 20px;
+    }
+
+    .dates {
+      /* margin-top: 20px; */
+      font-size: 1.2em;
+      flex: 1;
+    }
+
+    button {
+      border: 1px solid blue;
+    }
+    .small {
+      font-size: 70%;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        color: #213547;
+        background-color: #ffffff;
+      }
+
+      a:hover {
+        color: #747bff;
+      }
+
+      button {
+        background-color: #f9f9f9;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <person>
+      <h1>Robert M. Abarbanel, MD, PhD</h1>
+    </person>
+    <row>
+      <h3>1-206-499-1443</h3>
+      <h3>bob@babarbanel.com</h3>
+    </row>
+    <summary>
+      Performance driven senior professional, with experience including artificial
+      intelligence, high performance visualization, optimal user interfaces,
+      senior management, research and development, and customer-focused market
+      research.
+      <br />Core competencies include:
+      <ul>
+        <li>
+          Proven research and analytical skills: scientific, technical,
+          operational, and customer; that deliver results for the business.
+          Several using dynamic databases in support of decision making.
+        </li>
+        <li>
+          Product producer: commercial products taken from first idea to market
+          combining talents for design, development, and team management.
+        </li>
+        <li>
+          Keen intellectual and organizational skills: adept at quickly
+          researching and mastering new subjects to develop a strategy, plan, and
+          timeline to meet organizational objectives; and executing the programs
+          on time.
+        </li>
+        <li>
+          Proven practitioner of business intelligence: designer and developer of
+          several friendly, powerful systems to bring value to individuals and
+          organizations for using their data for complex decision making in
+          natural ways.
+        </li>
+        <li>
+          Dynamic leadership and interpersonal skills: proficient at building high
+          performing teams and positively influencing others across the
+          corporation, regardless of function or location, to obtain a commitment
+          to and achieve organizational objectives under tight timelines. A good
+          teacher, a good colleague, a good listener; experienced at communicating
+          to all levels of an organization.
+        </li>
+        <li>
+          Also – a Physician and Medical Informaticist with computing,
+          biotechnology and medical information system experience.
+        </li>
+      </ul>
+    </summary>
+    <br />
+    <h2>Experience</h2>
+    <summary>
+      <div class="column">
+        <div class="card">
+          <div class="spreadRow">
+            <div class="imgContainer">
+              <img class="smImg" src="../src/assets/images/SAP.png" />
+            </div>
+            <company>SAP</company>
+
+            <div class="dates">2009-2015</div>
+          </div>
+          <span>
+            <button class="dButton">Description</button>
+            <span class="descr" style="display:block">Created and developed high performance solutions to allow
+              “whole-vehicle” visual simulation in support of integrated
+              customer solutions, including query system design and improvements.</span>
+          </span>
+        </div>
+        <div class="card">
+          <div class="spreadRow">
+            <div class="imgContainer">
+              <img class="smImg" src="../src/assets/images/Hospira.png" />
+            </div>
+            <company>Hospira, <span class="small">acquired by Pfizer (2015)</span></company>
+
+            <div class="dates">2007-2009</div>
+          </div>
+          <span>
+            <button class="dButton">Description</button>
+            <span class="descr" style="display:block">Led creation of an Innovation Center with focus on process changes, culture transformation, and customer focus
+            with target of greater than 25% new product revenues every year. Practiced customer-centered outcome-driven innovation.</span>
+          </span>
+        </div>
+        <div class="card">
+          <Job loc="GE" />
+        </div>
+        <div class="card">
+          <Job loc="Genset" />
+        </div>
+        <div class="card">
+          <Job loc="Boeing" />
+        </div>
+        <div class="card">
+          <Job loc="Apple" />
+        </div>
+        <div class="card">
+          <Job loc="Other" />
+        </div>
+      </div>
+    </summary>
+  </main>
+  <script>
+    // function hideDescription(e) {
+    //   console.log(e)
+    // }
+    function next(elem) {
+      do {
+        elem = elem.nextSibling;
+      } while (elem && elem.nodeType !== 1);
+      return elem;
+    }
+    const descrs = document.querySelectorAll(".descr");
+    [...descrs].forEach(d => {
+      d.addEventListener("click", (e) => {
+        e.target.style.display === 'block' && (e.target.style.display = "none");
+      })
+    })
+    const dButtons = document.querySelectorAll(".dButton");
+    [...dButtons].forEach(d => {
+      d.addEventListener("click", (e) => {
+        const span = next(e.target);
+        span.style.display = (span.style.display === 'none') ? "block" : "none";
+      })
+    })
+  </script>
+</body>
+
+</html>
