@@ -171,8 +171,38 @@
       margin-left: 2em;
       font-size: 70%;
     }
-    summary li { background: rgb(191, 192, 191); color: black; font-weight: bold;}
-    summary li:nth-child(odd) { background: rgb(150, 150, 150);  }
+    summary li
+    {
+      font-weight: bold;
+    }
+    .ed {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      font-size: calc(1vw + 0.5em);
+      width: 70%;
+      margin: auto;
+    }
+    .edrow {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: row;
+      width: 100%;
+    }
+    .c1 {
+      flex: 1;
+    }
+    .c2 {
+      flex: 4;
+    }
+    .c3 {
+      flex: 3;
+    }
+    .right {
+      text-align: right;
+    }
+    /*summary li:nth-child(odd) { background: rgb(150, 150, 150);  } */
     @media (prefers-color-scheme: light) {
       :root {
         color: #213547;
@@ -242,7 +272,7 @@
       </ul>
     </summary>
     <br />
-    <h2>Experience</h2>
+    <h2><u>Experience</u></h2>
     <summary2>
       <div class="column">
         <div class="card">
@@ -344,7 +374,7 @@
             <div class="imgContainer">
               <img class="smImg" src="../src/assets/images/Other.png" />
             </div>
-            <company>Boeing<span class="small">Seattle, WA and Paris, France</span></company>
+            <company>Other Experience</company>
 
             <div class="dates">1977-2023</div>
           </div>
@@ -359,6 +389,27 @@
         </div>
       </div>
     </summary2>
+    <br />
+    <h2><u>Education</u></h2>
+    <div class="ed" >
+      <div class="edrow">
+        <div class="c1">1971</div>
+        <div class="c2">CalTech</div>
+        <div class="c3">BS, Physics/Biology</div>
+      </div>
+      <div class="edrow">
+        <div class="c1">1977</div>
+        <div class="c2">University of Michigan, School of Medicine</div>
+        <div class="c3">MD, Pediatrics</div>
+      </div>
+      <div class="edrow">
+        <div class="c1">1985</div>
+        <div class="c2">UC San Francisco</div>
+        <div class="c3">PhD, Medical Informatics</div>
+      </div>
+
+
+    </div>
   </main>
   <script>
     // function hideDescription(e) {
