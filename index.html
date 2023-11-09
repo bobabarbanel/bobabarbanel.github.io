@@ -100,14 +100,17 @@
       width: 80%;
     }
 
-    summary, summary2 {
+    summary,
+    summary2 {
       width: 90%;
       margin: 0 auto;
       font-size: calc(1vw + 0.5em);
     }
+
     summary2 {
       margin-left: 20px;
     }
+
     h2 {
       margin-left: 80px;
     }
@@ -167,14 +170,16 @@
     button {
       border: 1px solid blue;
     }
+
     .small {
       margin-left: 2em;
       font-size: 70%;
     }
-    summary li
-    {
+
+    summary li {
       font-weight: bold;
     }
+
     .ed {
       display: flex;
       align-items: center;
@@ -182,26 +187,41 @@
       font-size: calc(1vw + 0.5em);
       width: 70%;
       margin: auto;
+      border: 1px solid;
+      padding: 1em;
     }
+
     .edrow {
       display: flex;
       align-items: center;
       justify-content: space-around;
       flex-direction: row;
       width: 100%;
+
     }
+
     .c1 {
       flex: 1;
     }
+
     .c2 {
       flex: 4;
     }
+
     .c3 {
       flex: 3;
     }
+
     .right {
       text-align: right;
     }
+
+    .head_under {
+      text-decoration-line: underline;
+      text-decoration-color: rgb(0, 255, 26);
+      text-decoration-thickness: 5px;
+    }
+
     /*summary li:nth-child(odd) { background: rgb(150, 150, 150);  } */
     @media (prefers-color-scheme: light) {
       :root {
@@ -226,8 +246,8 @@
       <h1>Robert M. Abarbanel, MD, PhD</h1>
     </person>
     <row>
-      <h3>1-206-499-1443</h3>
-      <h3>bob@babarbanel.com</h3>
+      <a href="../src/Rabarbanel_CV.pdf">Download CV</a>
+      <h3>robertabarbanel@gmail.com</h3>
     </row>
     <summary>
       Performance driven senior professional, with experience including artificial
@@ -272,7 +292,7 @@
       </ul>
     </summary>
     <br />
-    <h2><u>Experience</u></h2>
+    <h2><span class="head_under">Experience</span></h2>
     <summary2>
       <div class="column">
         <div class="card">
@@ -302,8 +322,10 @@
           </div>
           <span>
             <button class="dButton">Description</button>
-            <span class="descr" style="display:block">Led creation of an Innovation Center with focus on process changes, culture transformation, and customer focus
-            with target of greater than 25% new product revenues every year. Practiced customer-centered outcome-driven innovation.</span>
+            <span class="descr" style="display:block">Led creation of an Innovation Center with focus on process
+              changes, culture transformation, and customer focus
+              with target of greater than 25% new product revenues every year. Practiced customer-centered
+              outcome-driven innovation.</span>
           </span>
         </div>
         <div class="card">
@@ -317,9 +339,11 @@
           </div>
           <span>
             <button class="dButton">Description</button>
-            <span class="descr" style="display:block">Principal Investigator for the Standard Shared Active Guideline Project, a $20M NIST supported research project
-            investigating how clinical guidelines can be made widely available across multiple clinical systems and how they can be
-            made active at the point of care.</span>
+            <span class="descr" style="display:block">Principal Investigator for the Standard Shared Active Guideline
+              Project, a $20M NIST supported research project
+              investigating how clinical guidelines can be made widely available across multiple clinical systems and
+              how they can be
+              made active at the point of care.</span>
           </span>
         </div>
         <div class="card">
@@ -333,8 +357,9 @@
           </div>
           <span>
             <button class="dButton">Description</button>
-            <span class="descr" style="display:block">Managed over 100 scientists, developers, designers, and support personnel, including computing and
-            bioinformatics specialists. Developed high performance genome analysis process.</span>
+            <span class="descr" style="display:block">Managed over 100 scientists, developers, designers, and support
+              personnel, including computing and
+              bioinformatics specialists. Developed high performance genome analysis process.</span>
           </span>
         </div>
         <div class="card">
@@ -348,9 +373,11 @@
           </div>
           <span>
             <button class="dButton">Description</button>
-            <span class="descr" style="display:block">Invented and managed the production use of FlyThru®, a high performance graphics system for large engineering
-            data sets supported by parallel search and object oriented data management. Result: Cost savings to Boeing of over $3B
-            by 1998.</span>
+            <span class="descr" style="display:block">Invented and managed the production use of FlyThru®, a high
+              performance graphics system for large engineering
+              data sets supported by parallel search and object oriented data management. Result: Cost savings to Boeing
+              of over $3B
+              by 1998.</span>
           </span>
         </div>
         <div class="card">
@@ -364,9 +391,11 @@
           </div>
           <span>
             <button class="dButton">Description</button>
-            <span class="descr" style="display:block">Co-managed the overall Systems Integration group in which the Database group was housed. Oversaw a $4M budget.
-            Hired vice-president level superior. Invented a distributed computational model for Mac networks that formed the basis
-            for integrated computing on Apple networks.</span>
+            <span class="descr" style="display:block">Co-managed the overall Systems Integration group in which the
+              Database group was housed. Oversaw a $4M budget.
+              Hired vice-president level superior. Invented a distributed computational model for Mac networks that
+              formed the basis
+              for integrated computing on Apple networks.</span>
           </span>
         </div>
         <div class="card">
@@ -380,18 +409,20 @@
           </div>
           <span>
             <button class="dButton">Description</button>
-            <span class="descr" style="display:block"><ul>
-              <li>Practice of Pediatrics, San Francisco, CA, 8 years, Emergency Room and Locum Tenums</li>
-              <li>IntelliGenetics/IntelliCorp, 7 years, Research Director, AI/Databases</li>
-              <li>Tutoring, 8 years, Math and Computer Science</li>
-            </ul></span>
+            <span class="descr" style="display:block">
+              <ul>
+                <li>Practice of Pediatrics, San Francisco, CA, 8 years, Emergency Room and Locum Tenums</li>
+                <li>IntelliGenetics/IntelliCorp, 7 years, Research Director, AI/Databases</li>
+                <li>Tutoring, 8 years, Math and Computer Science</li>
+              </ul>
+            </span>
           </span>
         </div>
       </div>
     </summary2>
     <br />
-    <h2><u>Education</u></h2>
-    <div class="ed" >
+    <h2><span class="head_under">Education</span></h2>
+    <div class="ed">
       <div class="edrow">
         <div class="c1">1971</div>
         <div class="c2">CalTech</div>
@@ -410,6 +441,11 @@
 
 
     </div>
+    Links<ul>
+      <li><a url="https://www.youtube.com/watch?v=6myxkyzdlDg">SAP Visual Enterprise</a></li>
+      <li><a href="">Boeing's FlyThru</a>wikipedia ivt article video</li>
+      <li><a href="http://sage.wherever.org/index.html">The SAGE Project</a></li>
+    </ul>
   </main>
   <script>
     // function hideDescription(e) {
