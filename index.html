@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>R Abarbanel</title>
   <style>
@@ -46,6 +46,16 @@
       place-items: left;
       min-width: 320px;
       min-height: 100vh;
+    }
+
+    column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    column>* {
+      margin-top: 20px;
     }
 
     h1 {
@@ -219,7 +229,12 @@
       text-decoration-color: rgb(0, 255, 26);
       text-decoration-thickness: 5px;
     }
-
+    row {
+      display: flex;
+      justify-content: space-around;
+      width: 70%;
+      align-items: center;
+    }
     /*summary li:nth-child(odd) { background: rgb(150, 150, 150);  } */
     @media (prefers-color-scheme: light) {
       :root {
@@ -234,6 +249,12 @@
       button {
         background-color: #f9f9f9;
       }
+    }
+    .cTable {
+      margin: auto;
+    }
+    .cTable td {
+      padding: 20px;
     }
   </style>
 </head>
@@ -420,7 +441,7 @@
     </summary2>
     <br />
     <h2><span class="head_under">Education</span></h2>
-    <br/>
+    <br />
     <div class="ed">
       <div class="edrow">
         <div class="c1">1971</div>
@@ -440,11 +461,27 @@
 
 
     </div>
-    Links<ul>
-      <li><a url="https://www.youtube.com/watch?v=6myxkyzdlDg">SAP Visual Enterprise</a></li>
-      <li><a href="">Boeing's FlyThru</a>wikipedia ivt article video</li>
-      <li><a href="http://sage.wherever.org/index.html">The SAGE Project</a></li>
-    </ul>
+    <br />
+    <h2><span class="head_under">Project Links</span></h2>
+    <table class="cTable">
+      <tr>
+        <td>SAP Visual Enterprise</td>
+        <td><a target=”_blank” href="https://www.youtube.com/watch?v=6myxkyzdlDg"><img width="50%" src="src/assets/images/SAPve.png"></a></td>
+      </tr>
+      <tr>
+        <td>FlyThru at Boeing</td>
+        <td><video autoplay width="50%">
+          <source  src="src/assets/videos/29.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video></td>
+      </tr>
+      <tr>
+        <td>GE Healthcare: The Sage Project</td>
+        <td><a target=”_blank” href="http://sage.wherever.org/index.html"><img width="50%" src="src/assets/images/Sage.png"></a></td>
+      </tr>
+    </table>
+
+      </summary2>
   </main>
   <script>
     // function hideDescription(e) {
