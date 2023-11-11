@@ -153,7 +153,9 @@
       font-size: 1.5em;
       flex: 3;
     }
-
+    td {
+      font-size: calc(1vw + 0.5em);
+    }
     .descr {
       margin-left: 2em;
     }
@@ -257,6 +259,9 @@
     }
     .cTable td {
       padding: 20px;
+    }
+    a {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -468,18 +473,18 @@
     <column>
     <table class="cTable">
       <tr>
-        <td>SAP Visual Enterprise</td>
+        <td><a target=”_blank” href="https://www.youtube.com/watch?v=6myxkyzdlDg">SAP Visual Enterprise</a></td>
         <td><a target=”_blank” href="https://www.youtube.com/watch?v=6myxkyzdlDg"><img width="50%" src="src/assets/images/SAPve.png"></a></td>
       </tr>
       <tr>
-        <td>FlyThru at Boeing</td>
-        <td><video autoplay width="50%">
+        <td><a >FlyThru at Boeing</a></td>
+        <td><video autoplay muted width="50%">
           <source  src="src/assets/videos/29.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video></td>
       </tr>
       <tr>
-        <td>GE Healthcare: The Sage Project</td>
+        <td><a target=”_blank” href="http://sage.wherever.org/index.html">GE Healthcare: The Sage Project</a></td>
         <td><a target=”_blank” href="http://sage.wherever.org/index.html"><img width="50%" src="src/assets/images/Sage.png"></a></td>
       </tr>
     </table>
