@@ -166,22 +166,28 @@
       width: 90%;
       justify-content: space-between;
       align-items: center;
+      /* border: 2px solid white; */
+      margin: 0 auto;
     }
 
     .imgContainer {
       flex: 1;
+      /* max-width: 1em; */
+      /* margin-left:20px; */
     }
 
     .smImg {
       /* margin-top: 10px; */
       height: 30px;
-      margin-right: 20px;
+      max-width: 5em;
+      /* margin-right: 20px; */
     }
 
     .dates {
       /* margin-top: 20px; */
       font-size: 1.2em;
       flex: 1;
+      margin-left: 3em;
     }
 
     button {
@@ -215,6 +221,9 @@
       width: 100%;
 
     }
+    /* .edge {
+      border: 1em solid white;
+    } */
 
     .c1 {
       flex: 1;
@@ -272,6 +281,10 @@
     }
     summary > p {
       margin-left: 5px;
+    }
+    .bigbold {
+      font-weight: bold;
+      font-size:2em;
     }
   </style>
 </head>
@@ -333,7 +346,7 @@
         <div class="card">
           <div class="spreadRow">
             <div class="imgContainer">
-              <img class="smImg" src="../src/assets/images/Hospira.png" />
+              <img class="smImg edge" src="../src/assets/images/HSPLOGO.jpg" />
             </div>
             <company>Hospira<span class="small">Lake Forest, IL.<span class="smaller">&nbsp;&nbsp;acquired by Pfizer (2015)</span></span></company>
 
@@ -420,7 +433,7 @@
         <div class="card">
           <div class="spreadRow">
             <div class="imgContainer">
-              <img class="smImg" src="../src/assets/images/Other.png" />
+              <span class="bigbold">...</span>
             </div>
             <company>Other Experience</company>
 
