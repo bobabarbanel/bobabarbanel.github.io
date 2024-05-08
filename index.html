@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>R Abarbanel</title>
+  <style>
+    :root {
+      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      font-weight: 400;
+
+      color-scheme: light dark;
+      color: rgba(255, 255, 255, 0.87);
+      background-color: #242424;
+
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    * {
+      box-sizing: border-box;
+      padding: 0px;
+      margin: 0px;
+    }
+
+
+    a {
+      font-weight: 500;
+      color: #646cff;
+      text-decoration: inherit;
+    }
+
+    a:hover {
+      color: #535bf2;
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      place-items: left;
+      min-width: 320px;
+      min-height: 100vh;
+    }
+    .center {
+      margin: 0 auto;
+    }
+    column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    column>* {
+      margin-top: 20px;
+    }
+
+    h1 {
+      font-size: 3.2em;
+      line-height: 1.1;
+    }
+
+    .card {
+      padding: 2em;
+      margin-top: 0.2em;
+      background-color: rgb(57, 57, 57);
+    }
+
+    #app {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem;
+      text-align: left;
+    }
+
+    button {
+      border-radius: 8px;
+      border: 1px solid transparent;
+      padding: 0.6em 1.2em;
+      font-size: .5em;
+      font-weight: 500;
+      font-family: inherit;
+      background-color: #1a1a1a;
+      cursor: pointer;
+      transition: border-color 0.25s;
+    }
+
+    button:hover {
+      border-color: #646cff;
+    }
+
+    button:focus,
+    button:focus-visible {
+      outline: 4px auto -webkit-focus-ring-color;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* width: 80%; */
+    }
+
+    .card {
+      border: 2px solid black;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: calc(1vw + 0.3em);
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    summary,
+    summary2 {
+      width: 90%;
+      margin: 0 auto;
+      font-size: calc(1vw + 0.5em);
+    }
+
+    summary2 {
+      margin-left: 20px;
+    }
+
+    h2 {
+      margin-left: 80px;
+    }
+
+    person {
+      font-size: calc(1vw + .2em);
+    }
+
+    h1 {
+      text-align: center;
+
+    }
+
+    row {
+      display: flex;
+      justify-content: space-around;
+      font-size: calc(1vw + 0.5em);
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+
+    company {
+      font-weight: bold;
+      font-size: 1.5em;
+      flex: 3;
+    }
+    td {
+      font-size: calc(1vw + 0.5em);
+    }
+    .descr {
+      margin-left: 2em;
+    }
+
+    .spreadRow {
+      display: flex;
+      width: 90%;
+      justify-content: space-between;
+      align-items: center;
+      /* border: 2px solid white; */
+      margin: 0 auto;
+    }
+
+    .imgContainer {
+      flex: 1;
+      /* max-width: 1em; */
+      /* margin-left:20px; */
+    }
+
+    .smImg {
+      /* margin-top: 10px; */
+      height: 30px;
+      max-width: 5em;
+      /* margin-right: 20px; */
+    }
+
+    .dates {
+      /* margin-top: 20px; */
+      font-size: 1.2em;
+      flex: 1;
+      margin-left: 3em;
+    }
+
+    button {
+      border: 1px solid blue;
+    }
+
+    .small {
+      margin-left: 2em;
+      font-size: 70%;
+    }
+    .smaller {
+      font-size: 50%;
+    }
+
+    .ed {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      font-size: calc(1vw + 0.5em);
+      width: 70%;
+      margin: auto;
+      border: 1px solid;
+      padding: 1em;
+    }
+
+    .edrow {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: row;
+      width: 100%;
+
+    }
+    /* .edge {
+      border: 1em solid white;
+    } */
+
+    .c1 {
+      flex: 1;
+    }
+
+    .c2 {
+      flex: 4;
+    }
+
+    .c3 {
+      flex: 3;
+    }
+
+    .right {
+      text-align: right;
+    }
+
+    .head_under {
+      text-decoration-line: underline;
+      text-decoration-color: rgb(0, 255, 26);
+      text-decoration-thickness: 5px;
+    }
+    row {
+      display: flex;
+      justify-content: space-around;
+      width: 70%;
+      align-items: center;
+    }
+    /*summary li:nth-child(odd) { background: rgb(150, 150, 150);  } */
+    @media (prefers-color-scheme: light) {
+      :root {
+        color: #213547;
+        background-color: #ffffff;
+      }
+
+      a:hover {
+        color: #747bff;
+      }
+
+      button {
+        background-color: #f9f9f9;
+      }
+      .card {
+        background-color: white;
+        color: black;
+      }
+    }
+    .cTable {
+      margin-left: 10%;
+    }
+    .cTable td {
+      padding: 20px;
+    }
+    a {
+      text-decoration: underline;
+    }
+    h4 {
+      margin-top: 7px;
+    }
+    summary > p {
+      margin-left: 5px;
+    }
+    .bigbold {
+      font-weight: bold;
+      font-size:2em;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <person>
+      <h1>Robert M. Abarbanel, MD, PhD</h1>
+    </person>
+    <row>
+      <a href="./src/Rabarbanel_CV.pdf">Download CV</a>
+      <h3>Abarbanel.Robert@gmail.com</h3>
+    </row>
+    <summary>
+      <h3>Dynamic senior professional with a proven track record in artificial intelligence, high-performance visualization,
+      optimal user interfaces, senior management, research and development, and customer-focused market research.</h3>
+      <h4>Proven Research and Analytical Skills:</h4>
+      <p>Demonstrated expertise in scientific, technical, operational, and customer research, consistently delivering actionable
+      results for the business. Proficient in utilizing dynamic databases to support effective decision-making.</p>
+      <h4>Product Development Expertise:</h4>
+      <p>A seasoned product producer, successfully taking commercial products from inception to market. Blend of skills in
+      design, development, and team management, ensuring comprehensive product lifecycle management.</p>
+      <h4>Intellectual and Organizational Agility:</h4>
+      <p>Possessing keen intellectual and organizational skills; rapidly mastering new subjects to formulate
+      strategies, plans, and timelines that align with organizational objectives. Demonstrated ability to execute programs
+      punctually.</p>
+      <h4>Business Intelligence Practitioner:</h4>
+      <p>Accomplished in designing and developing user-friendly, powerful systems that add significant value to individuals and
+      organizations. Specialized in leveraging data for complex decision-making in a natural and intuitive manner.</p>
+      <h4>Dynamic Leadership and Interpersonal Skills:</h4>
+      <p>Proven proficiency in building high-performing teams and positively influencing individuals across diverse functions and
+      locations. Adept at garnering commitment and achieving organizational objectives within stringent timelines. Recognized
+      as a skilled teacher, collaborator, and attentive listener, with experience communicating effectively at all levels of
+      an organization.</p>
+      <h4>Physician and Medical Informaticist:</h4>
+      <p>Augmented by a background in medicine and informatics, bringing a unique perspective to computing, biotechnology, and
+      medical information systems. Combining medical expertise with technological acumen for comprehensive solutions.</p>
+    </summary>
+    <br />
+    <h2><span class="head_under">Experience</span></h2>
+    <summary2>
+      <div class="flex flex-col items-center">
+        <div class="card">
+          <div class="spreadRow">
+            <div class="imgContainer">
+              <img class="smImg" src="../src/assets/images/SAP.png" />
+            </div>
+            <company>SAP<span class="small">Seattle, WA, and Vancouver, BC</span></company>
+
+            <div class="dates">2009-2015</div>
+          </div>
+          <span>
+            <button class="dButton">Description</button>
+            <span class="descr" style="display:none">Created and developed high performance solutions to allow
+              “whole-vehicle” visual simulation in support of integrated
+              customer solutions, including query system design and improvements.</span>
+          </span>
+        </div>
+        <div class="card">
+          <div class="spreadRow">
+            <div class="imgContainer">
+              <img class="smImg edge" src="../src/assets/images/HSPLOGO.jpg" />
+            </div>
+            <company>Hospira<span class="small">Lake Forest, IL.<span class="smaller">&nbsp;&nbsp;acquired by Pfizer (2015)</span></span></company>
+
+            <div class="dates">2007-2009</div>
+          </div>
+          <span>
+            <button class="dButton">Description</button>
+            <span class="descr" style="display:none">Led creation of an Innovation Center with focus on process
+              changes, culture transformation, and customer focus
+              with target of greater than 25% new product revenues every year. Practiced customer-centered
+              outcome-driven innovation.</span>
+          </span>
+        </div>
+        <div class="card">
+          <div class="spreadRow">
+            <div class="imgContainer">
+              <img class="smImg" src="../src/assets/images/GE.png" />
+            </div>
+            <company>GE Healthcare<span class="small">Seattle, WA</span></company>
+
+            <div class="dates">2002-2007</div>
+          </div>
+          <span>
+            <button class="dButton">Description</button>
+            <span class="descr" style="display:none">Principal Investigator for the Standard Shared Active Guideline
+              Project, a $20M NIST supported research project
+              investigating how clinical guidelines can be made widely available across multiple clinical systems and
+              how they can be
+              made active at the point of care.</span>
+          </span>
+        </div>
+        <div class="card">
+          <div class="spreadRow">
+            <div class="imgContainer">
+              <img class="smImg" src="../src/assets/images/Genset.png" />
+            </div>
+            <company>Genset<span class="small">Paris, France</span></company>
+
+            <div class="dates">2001-2002</div>
+          </div>
+          <span>
+            <button class="dButton">Description</button>
+            <span class="descr" style="display:none">Managed over 100 scientists, developers, designers, and support
+              personnel, including computing and
+              bioinformatics specialists. Developed high performance genome analysis process.</span>
+          </span>
+        </div>
+        <div class="card">
+          <div class="spreadRow">
+            <div class="imgContainer">
+              <img class="smImg" src="../src/assets/images/Boeing.png" />
+            </div>
+            <company>Boeing<span class="small">Seattle, WA and Paris, France</span></company>
+
+            <div class="dates">1990-2001</div>
+          </div>
+          <span>
+            <button class="dButton">Description</button>
+            <span class="descr" style="display:none">Invented and managed the production use of FlyThru®, a high
+              performance graphics system for large engineering
+              data sets supported by parallel search and object oriented data management. Result: Cost savings to Boeing
+              of over $3B
+              by 1998.</span>
+          </span>
+        </div>
+        <div class="card">
+          <div class="spreadRow">
+            <div class="imgContainer">
+              <img class="smImg" src="../src/assets/images/Apple.png" />
+            </div>
+            <company>Apple<span class="small">Cupertino, CA</span></company>
+
+            <div class="dates">1988-1990</div>
+          </div>
+          <span>
+            <button class="dButton">Description</button>
+            <span class="descr" style="display:none">Co-managed the overall Systems Integration group in which the
+              Database group was housed. Oversaw a $4M budget.
+              Hired vice-president level superior. Invented a distributed computational model for Mac networks that
+              formed the basis
+              for integrated computing on Apple networks.</span>
+          </span>
+        </div>
+        <div class="card">
+          <div class="spreadRow">
+            <div class="imgContainer">
+              <span class="bigbold">...</span>
+            </div>
+            <company>Other Experience</company>
+
+            <div class="dates">1977-2023</div>
+          </div>
+          <span>
+            <button class="dButton">Description</button>
+            <span class="descr" style="display:none">
+              <ul>
+                <li>Practice of Pediatrics, San Francisco, CA, 8 years, Emergency Room and Locum Tenums</li>
+                <li>IntelliGenetics/IntelliCorp, 7 years, Research Director, AI/Databases</li>
+                <li>Tutoring, 8 years, Math and Computer Science</li>
+              </ul>
+            </span>
+          </span>
+        </div>
+      </div>
+    </summary2>
+    <br />
+    <h2><span class="head_under">Education</span></h2>
+    <br />
+    <div class="ed">
+      <div class="edrow">
+        <div class="c1">1971</div>
+        <div class="c2">CalTech</div>
+        <div class="c3">BS, Physics/Biology</div>
+      </div>
+      <div class="edrow">
+        <div class="c1">1977</div>
+        <div class="c2">University of Michigan, School of Medicine</div>
+        <div class="c3">MD, Pediatrics</div>
+      </div>
+      <div class="edrow">
+        <div class="c1">1985</div>
+        <div class="c2">UC San Francisco</div>
+        <div class="c3">PhD, Medical Informatics</div>
+      </div>
+
+
+    </div>
+    <br />
+    <h2><span class="head_under">Project Links</span></h2>
+    <div class="flex flex-col items-center">
+    <table class="cTable">
+      <tr>
+        <td><a>SAP Visual Analytics</a></td>
+        <td><video autoplay muted width="50%">
+            <source src="src/assets/videos/moto-bike.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video></td>
+      </tr>
+      <tr>
+        <td><a>FlyThru at Boeing</a></td>
+        <td><video autoplay muted width="50%">
+          <source  src="src/assets/videos/29.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video></td>
+      </tr>
+      <tr>
+        <td><a target=”_blank” href="http://sage.wherever.org/index.html">GE Healthcare:<br/>The Sage Project</a></td>
+        <td><a target=”_blank” href="http://sage.wherever.org/index.html"><img width="50%" src="src/assets/images/Sage.png"></a></td>
+      </tr>
+    </table>
+
+      </div>
+  </main>
+  <script>
+    // function hideDescription(e) {
+    //   console.log(e)
+    // }
+    function next(elem) {
+      do {
+        elem = elem.nextSibling;
+      } while (elem && elem.nodeType !== 1);
+      return elem;
+    }
+    const descrs = document.querySelectorAll(".descr");
+    [...descrs].forEach(d => {
+      d.addEventListener("click", (e) => {
+        e.target.style.display === 'block' && (e.target.style.display = "none");
+      })
+    })
+    const dButtons = document.querySelectorAll(".dButton");
+    [...dButtons].forEach(d => {
+      d.addEventListener("click", (e) => {
+        const span = next(e.target);
+        span.style.display = (span.style.display === 'none') ? "block" : "none";
+      })
+    })
+  </script>
+</body>
+
+</html>
