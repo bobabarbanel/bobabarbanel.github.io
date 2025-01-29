@@ -1,0 +1,67 @@
+
+h1 {
+    text-align:center;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    display:flex;
+    align-content: center;
+    justify-content: space-evenly;
+    font-size: 2em;
+    border: 1px solid black;
+    width: 80%
+}
+
+welcome {
+    /* height: 15em; */
+    width: 50em;
+    margin: 2em;
+    text-align:center;
+}
+welcome > div {
+    font-size: 8em;
+}
+.button_common {
+
+    padding: 0.5em;
+    margin: 0.5em;
+    width: 6em;
+    border-radius: 1em;
+    cursor: pointer;
+    background-color: lightgrey;
+    text-align: center;
+}
+button {
+    font-size: 1em;
+}
+sm_button {
+    font-size: .8em;
+}
+
+sm_button:hover, button:hover {
+    background-color: lightblue;
+}
+
+.question {
+    font-style: italic;
+    text-align:center;
+    width: 50%;
+    margin: 2em;
+    color: green;
+}
+
+.fs2 {
+    font-size: 2em;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tm1 {
+    margin-top: 1em;
+}
