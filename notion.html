@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notion Page</title>
+    <style>
+        red {
+            color: red;
+        }
+        nav {
+            font-size: 1.5em;
+        }
+    </style>
+
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+    </nav>
+    <h1 id="notion_page" style="text-align: center;">text</h1>
+    <script>
+        function getArgsFromLink() {
+                const urlParams = window.location.search;
+                const regex = /name=(\w+)$/;
+                const name = urlParams.match(regex);
+                document.getElementById("notion_page").innerHTML =
+                    `Takes you to Notion page: <red>${name[1]}</red>`;
+        }
+        getArgsFromLink();
+    </script>
+</body>
+</html>
