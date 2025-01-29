@@ -1,0 +1,1 @@
+<button onclick="window.location.href='anotherpage.html'">Go to Another Page</button>
