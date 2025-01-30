@@ -109,31 +109,35 @@
                 <span class="error" id="passwordError"></span>
             </div>
 
-            <button type="submit">Login</button>
+            <button type="button" onclick="doRegister(); return false;">Register</button>
 
         </form>
     </div>
 
     <script>
         // JavaScript to validate password length
-        const registerForm = document.getElementById('registerForm');
+        // const registerForm = document.getElementById('registerForm');
 
-        registerForm.addEventListener('submit', function (event) {
+        function doRegister() {
             const passwordInput = document.getElementById('password');
             const passwordError = document.getElementById('passwordError');
 
             if (passwordInput.value.length < 8) {
                 event.preventDefault(); // Prevent form submission
                 passwordError.textContent = 'Password must be at least 8 characters long.';
+                return
             } else {
                 passwordError.textContent = ''; // Clear error message
             }
 
-            /* Verify Not a repeat Username */
+            /* TODO: Verify Not a repeat Username */
             /* Save encrypted password */
             /* Login user and go back to index.html page or
             fail and display error message */
-        });
+            let username = document.getElementById('username').value;
+            document.cookie = `verified=${username}; path=/`;
+            window.location.href = 'index.html';
+        }
     </script>
 
 </body>
