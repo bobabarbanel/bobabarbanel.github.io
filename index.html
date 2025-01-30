@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Dignity</title>
 </head>
+
 <body>
     <h1>Dignity in Business Working Group</h1>
     <div class="col">
         <nav>
-            <button class="button_common" onclick="window.location.href='notion.html?name=About'">About</button>
-            <button class="button_common" onclick="window.location.href='notion.html?name=Publications'">Publications</button>
-            <button class="button_common" onclick="window.location.href='notion.html?name=Projects'">Projects</button>
-            <button class="button_common" onclick="window.location.href='notion.html?name=Research'">Research</button>
+            <button id="about" class="button_common" disabled
+                onclick="window.location.href='notion.html?name=About'">About</button>
+            <button id="publications" class="button_common" disabled
+                onclick="window.location.href='notion.html?name=Publications'">Publications</button>
+            <button id="projects" class="button_common" disabled
+                onclick="window.location.href='notion.html?name=Projects'">Projects</button>
+            <button id="research" class="button_common" disabled
+                onclick="window.location.href='notion.html?name=Research'">Research</button>
         </nav>
-        <welcome><div>Welcome</div></welcome>
+        <welcome>
+            <div id="greeting">Welcome</div>
+            <div id="username">&nbsp;</div>
+        </welcome>
         <div class="question center fs2">How can we make workplaces where respect for the dignity of every
-        individual is built in to daily life?</div>
+            individual is built in to daily life?</div>
         <div class="center fs2 m2">Can you help with the answer?</div>
 
         <nav class="tm1">
-            <sm_button class="button_common">Navigation</sm_button>
+            <button id="navigation" class="button_common fs_small" disabled>Navigation</button>
             <div>&nbsp;</div>
             <div>&nbsp;</div>
-            <sm_button class="button_common" onclick="window.location.href='login.html'">Login / Sign Up</sm_button>
+            <button id="login" class="button_common fs_small"
+                onclick="window.location.href='login.html'">Login/Register</button>
+            <button id="logout" class="button_common fs_small"
+                onclick="reloadPage(); return false;">Logout</button>
         </nav>
         <footer>
             <div>Version 0.1</div>
@@ -33,5 +45,59 @@
             <div>&copy; 2025 EchtHR</div>
         </footer>
     </div>
+    <script>
+         const usernameElem = document.getElementById("username");
+        function getCookie(cookieName) {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(cookieName + '=')) {
+                    return decodeURIComponent(cookie.substring(cookieName.length + 1));
+                }
+            }
+            return null;
+        }
+        function enableButton(aButtonId) {
+            document.getElementById(aButtonId).disabled = false;
+        }
+        function disableButton(aButtonId) {
+            console.log('disable', aButtonId);
+            document.getElementById(aButtonId).disabled = true;
+        }
+        function reloadPage() {
+            document.cookie = 'verified=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            location.reload();
+        }
+        window.addEventListener('load', () => {
+            const verified = getCookie('verified');
+            console.log({verified})
+            const buttons = document.querySelectorAll('button[id]');
+            if(verified){
+                // Iterate over the NodeList of buttons
+                buttons.forEach(button => {
+                    // console.log(button.id); // Print the ID of each button
+                    if(!button.id.startsWith("log")) {
+                        enableButton(button.id);
+                    }
+                });
+                document.getElementById('login').style.display = 'none';
+
+                usernameElem.innerHTML= verified;
+                usernameElem.style.backgroundColor = 'lime';
+            } else {
+                // Iterate over the NodeList of buttons
+                buttons.forEach(button => {
+                    // console.log(button.id); // Print the ID of each button
+                    if (!button.id.startsWith("log")) {
+                        disableButton(button.id);
+                    }
+                });
+                document.getElementById('logout').style.display = 'none';
+                usernameElem.innerHTML = `&nbsp;`;
+                usernameElem.style.backgroundColor = 'white';
+            }
+        });
+    </script>
 </body>
+
 </html>

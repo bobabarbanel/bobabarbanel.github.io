@@ -14,13 +14,14 @@ nav {
 }
 
 welcome {
-    /* height: 15em; */
-    width: 50em;
-    margin: 2em;
+    margin: 1em;
     text-align:center;
 }
-welcome > div {
+#greeting {
     font-size: 8em;
+}
+#username {
+    font-size: 3em;
 }
 .button_common {
     padding: 0.5em;
@@ -34,11 +35,15 @@ welcome > div {
 button {
     font-size: 1em;
 }
-sm_button {
+.fs_small {
     font-size: .8em;
+    width: 8em;
 }
 
-sm_button:hover, button:hover {
+button[disabled]:hover {
+    background-color: lightgrey;
+}
+button:hover {
     background-color: lightblue;
 }
 
@@ -65,22 +70,13 @@ sm_button:hover, button:hover {
 }
 
 footer{
-    /* position: fixed; */
     text-align: center;
     font-size: 16px;
     font-family: verdana;
     width: 80vw;
     height: 50px;
-    /* background-color: #f6f6f6 ; */
     display: flex;
     flex-direction: row;
     align-content: center;
     justify-content: space-between;
 }
-/* .footer > div {
-
-} */
-/* welcome > div {
-    -webkit-mask-image: url("grit.png");
-    mask-image: url("grit.png");
-} */
