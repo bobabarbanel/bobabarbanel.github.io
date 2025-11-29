@@ -1,2 +1,2 @@
-# Dignity Website
-28 January 2024
+# Seattle Weather
+30 November 2025

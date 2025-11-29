@@ -2,101 +2,175 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Dignity</title>
+    <meta charset="UTF-8" />
+    <title>Seattle Temperature Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Legend styling */
+        .info.legend {
+            padding: 8px 10px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            font: 12px/1.4 "Helvetica Neue", Arial, Helvetica, sans-serif;
+        }
+
+        .info.legend h4 {
+            margin: 0 0 4px 0;
+            font-size: 13px;
+        }
+
+        .legend-scale {
+            display: flex;
+            align-items: center;
+            margin-top: 4px;
+        }
+
+        .legend-bar {
+            display: flex;
+            height: 10px;
+            border: 1px solid #555;
+            margin-right: 6px;
+            width: 120px;
+        }
+
+        .legend-bar span {
+            flex: 1;
+        }
+
+        .legend-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            margin-top: 2px;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Dignity in Business Working Group</h1>
-    <div class="col">
-        <nav>
-            <button id="about" class="button_common" disabled
-                onclick="window.location.href='notion.html?name=About'">About</button>
-            <button id="publications" class="button_common" disabled
-                onclick="window.location.href='notion.html?name=Publications'">Publications</button>
-            <button id="projects" class="button_common" disabled
-                onclick="window.location.href='notion.html?name=Projects'">Projects</button>
-            <button id="research" class="button_common" disabled
-                onclick="window.location.href='notion.html?name=Research'">Research</button>
-        </nav>
-        <welcome>
-            <div id="greeting">Welcome</div>
-            <div id="username">&nbsp;</div>
-        </welcome>
-        <div class="question center fs2">How can we make workplaces where respect for the dignity of every
-            individual is built in to daily life?</div>
-        <div class="center fs2 m2">Can you help with the answer?</div>
+    <div id="map"></div>
 
-        <nav class="tm1">
-            <button id="navigation" class="button_common fs_small" disabled>Navigation</button>
-            <div>&nbsp;</div>
-            <div>&nbsp;</div>
-            <button id="login" class="button_common fs_small"
-                onclick="window.location.href='login.html'">Login/Register</button>
-            <button id="logout" class="button_common fs_small"
-                onclick="reloadPage(); return false;">Logout</button>
-        </nav>
-        <footer>
-            <div>Version 0.1</div>
-            <div>January 28, 2025</div>
-            <div>David N. Dobrin</div>
-            <div>&copy; 2025 EchtHR</div>
-        </footer>
-    </div>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <script>
-         const usernameElem = document.getElementById("username");
-        function getCookie(cookieName) {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.startsWith(cookieName + '=')) {
-                    return decodeURIComponent(cookie.substring(cookieName.length + 1));
-                }
-            }
-            return null;
-        }
-        function enableButton(aButtonId) {
-            document.getElementById(aButtonId).disabled = false;
-        }
-        function disableButton(aButtonId) {
-            console.log('disable', aButtonId);
-            document.getElementById(aButtonId).disabled = true;
-        }
-        function reloadPage() {
-            document.cookie = 'verified=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-            location.reload();
-        }
-        window.addEventListener('load', () => {
-            const verified = getCookie('verified');
-            console.log({verified})
-            const buttons = document.querySelectorAll('button[id]');
-            if(verified){
-                // Iterate over the NodeList of buttons
-                buttons.forEach(button => {
-                    // console.log(button.id); // Print the ID of each button
-                    if(!button.id.startsWith("log")) {
-                        enableButton(button.id);
-                    }
-                });
-                document.getElementById('login').style.display = 'none';
+        // Approximate center of Seattle
+        const seattleLat = 47.6062;
+        const seattleLng = -122.3321;
 
-                usernameElem.innerHTML= verified;
-                usernameElem.style.backgroundColor = 'lime';
-            } else {
-                // Iterate over the NodeList of buttons
-                buttons.forEach(button => {
-                    // console.log(button.id); // Print the ID of each button
-                    if (!button.id.startsWith("log")) {
-                        disableButton(button.id);
-                    }
-                });
-                document.getElementById('logout').style.display = 'none';
-                usernameElem.innerHTML = `&nbsp;`;
-                usernameElem.style.backgroundColor = 'white';
-            }
+        // Roughly 50-mile radius in degrees (≈0.9 degrees latitude)
+        const latRadiusDeg = 0.9;
+        const lngRadiusDeg = 0.9;
+
+        // Create the Leaflet map
+        const map = L.map("map", {
+            center: [seattleLat, seattleLng],
+            zoom: 9 // Adjust zoom to roughly show ~50 miles around Seattle
         });
+
+        // Base map layer (OpenStreetMap)
+        const osm = L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+                maxZoom: 18,
+                attribution: "&copy; OpenStreetMap contributors"
+            }
+        ).addTo(map);
+
+        // Draw a circle showing ~50-mile region
+        const radiusMiles = 50;
+        const radiusMeters = radiusMiles * 1609.34;
+        L.circle([seattleLat, seattleLng], {
+            radius: radiusMeters,
+            color: "blue",
+            fill: false
+        }).addTo(map);
+
+        // OpenWeatherMap temperature tile layer (°C, uses OpenWeather color scale)
+        const OPENWEATHER_API_KEY = "9e78c406571d6b36e4012e42a7789149";
+
+        const tempLayer = L.tileLayer(
+            "https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=" + OPENWEATHER_API_KEY,
+            {
+                opacity: 0.6,
+                attribution: "Weather data © OpenWeatherMap"
+            }
+        ).addTo(map);
+
+        // Optional: restrict map view approximately to 50 miles around Seattle
+        const bounds = L.latLngBounds(
+            [seattleLat - latRadiusDeg, seattleLng - lngRadiusDeg],
+            [seattleLat + latRadiusDeg, seattleLng + lngRadiusDeg]
+        );
+        map.setMaxBounds(bounds);
+        map.on("drag", function () {
+            map.panInsideBounds(bounds, { animate: false });
+        });
+
+        // Layer control (toggle temperature overlay)
+        L.control.layers(
+            { "OpenStreetMap": osm },
+            { "Temperature (°C)": tempLayer },
+            { collapsed: false }
+        ).addTo(map);
+
+        // Legend control with approximate numeric ranges for OpenWeather temp tiles
+        const legend = L.control({ position: "bottomright" });
+
+        legend.onAdd = function (map) {
+            const div = L.DomUtil.create("div", "info legend");
+
+            div.innerHTML = `
+        <h4>Temperature (°C)</h4>
+        <div>Colors follow OpenWeather temperature map scale.</div>
+        <div class="legend-scale">
+          <div class="legend-bar">
+            <span style="background:#0000ff;"></span>
+            <span style="background:#00ffff;"></span>
+            <span style="background:#00ff00;"></span>
+            <span style="background:#ffff00;"></span>
+            <span style="background:#ff7f00;"></span>
+            <span style="background:#ff0000;"></span>
+          </div>
+          <div>
+            <div class="legend-labels">
+              <span>&lt; -20</span>
+              <span>0</span>
+              <span>10</span>
+              <span>20</span>
+              <span>30</span>
+              <span>&gt; 40</span>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:11px;margin-top:4px;">
+          Blue = colder, red = hotter. Circle ≈ 50-mile radius from Seattle.
+        </div>
+      `;
+
+            return div;
+        };
+
+        legend.addTo(map);
     </script>
 </body>
 
