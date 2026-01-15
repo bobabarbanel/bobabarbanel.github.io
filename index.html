@@ -2,175 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Seattle Temperature Map</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-        }
-
-        #map {
-            height: 100%;
-            width: 100%;
-        }
-
-        /* Legend styling */
-        .info.legend {
-            padding: 8px 10px;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            border-radius: 4px;
-            font: 12px/1.4 "Helvetica Neue", Arial, Helvetica, sans-serif;
-        }
-
-        .info.legend h4 {
-            margin: 0 0 4px 0;
-            font-size: 13px;
-        }
-
-        .legend-scale {
-            display: flex;
-            align-items: center;
-            margin-top: 4px;
-        }
-
-        .legend-bar {
-            display: flex;
-            height: 10px;
-            border: 1px solid #555;
-            margin-right: 6px;
-            width: 120px;
-        }
-
-        .legend-bar span {
-            flex: 1;
-        }
-
-        .legend-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            margin-top: 2px;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display IP Address</title>
 </head>
 
 <body>
-    <div id="map"></div>
-
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <h1>Your Public IP Address is:</h1>
+    <!-- A paragraph element where the IP address will be displayed -->
+    <p id="ip-address">Fetching IP...</p>
 
     <script>
-        // Approximate center of Seattle
-        const seattleLat = 47.6062;
-        const seattleLng = -122.3321;
-
-        // Roughly 50-mile radius in degrees (≈0.9 degrees latitude)
-        const latRadiusDeg = 0.9;
-        const lngRadiusDeg = 0.9;
-
-        // Create the Leaflet map
-        const map = L.map("map", {
-            center: [seattleLat, seattleLng],
-            zoom: 9 // Adjust zoom to roughly show ~50 miles around Seattle
+        // Wait for the HTML document to be fully loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch the IP address from the ipify API endpoint
+            fetch("https://api.ipify.org/?format=json")
+                .then(response => response.json()) // Parse the response as JSON
+                .then(data => {
+                    // Update the content of the <p> tag with the retrieved IP address
+                    document.getElementById("ip-address").textContent = data.ip;
+                })
+                .catch(error => {
+                    // Handle any errors that occur during the fetch operation
+                    console.error("Error fetching IP:", error);
+                    document.getElementById("ip-address").textContent = "Could not retrieve IP address.";
+                });
         });
-
-        // Base map layer (OpenStreetMap)
-        const osm = L.tileLayer(
-            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            {
-                maxZoom: 18,
-                attribution: "&copy; OpenStreetMap contributors"
-            }
-        ).addTo(map);
-
-        // Draw a circle showing ~50-mile region
-        const radiusMiles = 50;
-        const radiusMeters = radiusMiles * 1609.34;
-        L.circle([seattleLat, seattleLng], {
-            radius: radiusMeters,
-            color: "blue",
-            fill: false
-        }).addTo(map);
-
-        // OpenWeatherMap temperature tile layer (°C, uses OpenWeather color scale)
-        const OPENWEATHER_API_KEY = "9e78c406571d6b36e4012e42a7789149";
-
-        const tempLayer = L.tileLayer(
-            "https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=" + OPENWEATHER_API_KEY,
-            {
-                opacity: 0.6,
-                attribution: "Weather data © OpenWeatherMap"
-            }
-        ).addTo(map);
-
-        // Optional: restrict map view approximately to 50 miles around Seattle
-        const bounds = L.latLngBounds(
-            [seattleLat - latRadiusDeg, seattleLng - lngRadiusDeg],
-            [seattleLat + latRadiusDeg, seattleLng + lngRadiusDeg]
-        );
-        map.setMaxBounds(bounds);
-        map.on("drag", function () {
-            map.panInsideBounds(bounds, { animate: false });
-        });
-
-        // Layer control (toggle temperature overlay)
-        L.control.layers(
-            { "OpenStreetMap": osm },
-            { "Temperature (°C)": tempLayer },
-            { collapsed: false }
-        ).addTo(map);
-
-        // Legend control with approximate numeric ranges for OpenWeather temp tiles
-        const legend = L.control({ position: "bottomright" });
-
-        legend.onAdd = function (map) {
-            const div = L.DomUtil.create("div", "info legend");
-
-            div.innerHTML = `
-        <h4>Temperature (°C)</h4>
-        <div>Colors follow OpenWeather temperature map scale.</div>
-        <div class="legend-scale">
-          <div class="legend-bar">
-            <span style="background:#0000ff;"></span>
-            <span style="background:#00ffff;"></span>
-            <span style="background:#00ff00;"></span>
-            <span style="background:#ffff00;"></span>
-            <span style="background:#ff7f00;"></span>
-            <span style="background:#ff0000;"></span>
-          </div>
-          <div>
-            <div class="legend-labels">
-              <span>&lt; -20</span>
-              <span>0</span>
-              <span>10</span>
-              <span>20</span>
-              <span>30</span>
-              <span>&gt; 40</span>
-            </div>
-          </div>
-        </div>
-        <div style="font-size:11px;margin-top:4px;">
-          Blue = colder, red = hotter. Circle ≈ 50-mile radius from Seattle.
-        </div>
-      `;
-
-            return div;
-        };
-
-        legend.addTo(map);
     </script>
 </body>
 
