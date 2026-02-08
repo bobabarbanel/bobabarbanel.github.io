@@ -6,17 +6,29 @@
     <title>IP and Location</title>
     <link rel="stylesheet" href="./codepen.css">
     <style>
+        html,
         body {
-            font-family: sans-serif;
-            padding: 1rem;
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+
+            align-items: center;
+
+            font-family: system-ui, sans-serif;
         }
 
         #ip-info {
             background: var(--black-1);
             color: var(--corail-1);
-            font-size:larger;
+            font-size: larger;
             padding: 1rem;
             border-radius: 4px;
+            white-space: pre-wrap;
+            text-align: center;
         }
     </style>
 </head>
