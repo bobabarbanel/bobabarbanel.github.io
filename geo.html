@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>IP and Location</title>
+</head>
+
+<body>
+    <pre id="ip-info">Loading…</pre>
+
+    <script>
+        async function getPublicIp() {
+            // ipify returns JSON like: { "ip": "203.0.113.42" } [web:34][web:43]
+            const res = await fetch('https://api.ipify.org?format=json');
+            if (!res.ok) throw new Error('Failed to get IP');
+            const data = await res.json();
+            return data.ip;
+        }
+
+        async function getLocationForIp(ip) {
+            // ipwho.is supports explicit IP: https://ipwho.is/8.8.8.8 [web:16][web:18]
+            const res = await fetch(`https://ipwho.is/${ip}`);
+            if (!res.ok) throw new Error('Failed to get location');
+            const data = await res.json();
+            if (!data.success) throw new Error('Lookup unsuccessful');
+            return data;
+        }
+
+        async function showIpAndLocation() {
+            const el = document.getElementById('ip-info');
+            try {
+                const ip = await getPublicIp();
+                const loc = await getLocationForIp(ip);
+
+                const city = loc.city;
+                const state = loc.region;
+                const country = loc.country;
+                const lat = loc.latitude;
+                const lon = loc.longitude;
+
+                el.textContent =
+                    `IP: ${ip}
+Location: ${city}, ${state}, ${country}
+Coordinates: ${lat}, ${lon}`;
+            } catch (err) {
+                el.textContent = 'Error retrieving IP/location.';
+                console.error(err);
+            }
+        }
+
+        showIpAndLocation();
+    </script>
+</body>
+
+</html>
